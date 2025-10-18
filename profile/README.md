@@ -4,13 +4,12 @@ This project is an experimental **actor system built on the Linux filesystem and
 It acts like a **sandbox for exploring system behavior** - you can model services, send messages, and eventually pause,
 inspect, and edit interactions at runtime. Think of it as a **lightweight debugger for distributed systems**.
 
-- [EOS (Explore OS)](#eos-explore-os)
-  - [Work in Progress](#work-in-progress)
-  - [Introduction](#introduction)
-  - [Why?](#why)
-  - [Getting started](#getting-started)
-  - [How it works](#how-it-works)
-  - [Whats next](#whats-next)
+- [Work in Progress](#work-in-progress)
+- [Introduction](#introduction)
+- [Why?](#why)
+- [Getting started](#getting-started)
+- [How it works](#how-it-works)
+- [Whats next](#whats-next)
 
 ---
 
