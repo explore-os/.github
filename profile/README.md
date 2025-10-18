@@ -70,8 +70,8 @@ at the top to create your own playground
 
 If you just want to play around a bit, you can just clone the repository and try it out:
 ```sh
-git clone https://github.com/hardliner66/eos-play
-code eos-play
+git clone https://github.com/explore-os/play eos
+code eos
 ```
 
 When asked if you want to open the project inside a container, click yes so vscode can set up the docker
