@@ -10,6 +10,9 @@ inspect, and edit interactions at runtime. Think of it as a **lightweight debugg
 - [Introduction](#introduction)
 - [Why?](#why)
 - [Getting started](#getting-started)
+- [Workspace](#workspace)
+- [Persistence](#persistence)
+- [Teleplot](#teleplot)
 - [How it works](#how-it-works)
 - [Whats next](#whats-next)
 
@@ -139,6 +142,48 @@ If you want to send a message, you can use the send function that is provided by
 The send function takes the id of the actor the message should be sent to as first argument and
 a map as the second argument. The contents of the map will be serialized to json and the supervisor
 will make sure the message finds its way to its target.
+
+---
+
+## Workspace
+
+The devcontainer repo contains a directory called `workspace`, which gets mounted to `/explore/workspace`
+and is intended for files that are part of the git repo containing the devcontainer, but need to be accessible
+from inside the container.
+
+This directory can be used to store all your scripts and files needed to replicate whatever scenario or use-case
+you were testing or exploring. This allows you to commit those files and make it possible for others to clone
+your repository and re-use the stuff you created.
+
+---
+
+## Persistence
+
+EOS supports persistence via [redb](https://github.com/cberner/redb).
+
+The `eos` lib exports a struct called `Db` which is a thin wrapper around redb. There are multiple subcommands
+under `eos db` which can be used to access redb databases from the terminal. The script actor provides
+the functions `store(name: string, key: string, value: any)`, `load(name: string, key: string)` and
+`delete(name: string, key: string)` to the scripts, so actors can persist data across reboots.
+
+The redb files are stored inside the directory `/explore/storage`. In the devcontainer this gets mounted to
+an internal volume, allowing the files to survive restarts, while keeping them away from the workspace files.
+
+---
+
+## Teleplot
+
+EOS supports plotting data via [teleplot](https://github.com/nesnes/teleplot).
+
+The `eos` lib exports a function called `plot`, which can be used from inside an actor to send
+data to a local teleplot server. The cli exposes that function as a subcommand (`eos plot`) to allow sending
+data from the terminal as well.
+The script actor provides the function `plot(data: string)` to allow scripts to send data for plotting as well.
+
+The playground has the teleplot extension installed, which can be used to quickly
+start a teleplot server and show the web interface directly inside vscode. This is done
+by using the command palette (just type teleplot and it should show up), which will start a server and show
+the teleplot UI. This is a manual action and must be done before any plot data is sent.
 
 ---
 
