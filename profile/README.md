@@ -206,10 +206,7 @@ There are three main directories:
 - `$EOS_ROOT/send`
 
 The `spawn` directory is for creating new actors. You just need to create a json file there containing the `path` to
-the binary you want to run and the arguments (`args`) you want it to run with. After the file is created,
-you need to notify the `supervisor` that a new actor is waiting to get created, which is done by sending it
-the signal `USR1`. When spawning an actor through the `eos` tool, this is done automatically, but if you want
-to do it yourself, you can run `kill -USR1 $(cat $EOS_ROOT/.pid)`. Make sure to replace `$EOS_ROOT` with the actual directory.
+the binary you want to run and the arguments (`args`) you want it to run with.
 
 When an actor is spawned, it gets passed its own ID, the path to its state file,
 the path to the file it should read when a new message is available,
