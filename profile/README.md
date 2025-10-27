@@ -200,10 +200,7 @@ There are three main directories:
 - `$EOS_ROOT/send`
 
 The `spawn` directory is for creating new actors. You just need to create a json file there containing the `path` to
-the binary you want to run and the arguments (`args`) you want it to run with. After the file is created,
-you need to notify the `supervisor` that a new actor is waiting to get created, which is done by sending it
-the signal `USR1`. When spawning an actor through the `eos` tool, this is done automatically, but if you want
-to do it yourself, you can run `kill -USR1 $(cat $EOS_ROOT/.pid)`. Make sure to replace `$EOS_ROOT` with the actual directory.
+the binary you want to run and the arguments (`args`) you want it to run with.
 
 When an actor is spawned, it gets passed its own ID, the path to its state file,
 the path to the file it should read when a new message is available,
@@ -211,7 +208,7 @@ the directory it should write file into when sending a message and after that, a
 
 After the actor has been spawned, you will see a new directory inside the `actors` directory,
 which contains all the data regarding this actor. It has a `state.json` containing its current state,
-a `.pid` for coordination and a `spool` directory for working through messages.
+a `.pid` for coordination and a `mailbox` directory for working through messages.
 
 An actor process should not hold internal state, but instead re-read its state from its state file before
 handling a message. This makes it possible to manually edit the state when experimenting with the system.
@@ -224,9 +221,9 @@ The random id is needed so that messages don't overwrite each other.
 
 The `supervisor` scans the `send` directory in pre-defined intervals (2 second cycle by default),
 if it sees a message with a valid name,
-it will move the file into the actors `spool` directory, where its picked up in the next cycle.
+it will move the file into the actors `mailbox` directory, where its picked up in the next cycle.
 
-The `supervisor` also scans the `spool` directories of each actor. If it doesn't contain a file named `current`,
+The `supervisor` also scans the `mailbox` directories of each actor. If it doesn't contain a file named `current`,
 it will take the oldest message and rename it to that. After thats done, it will send the signal `USR1` to
 the actor, so it knows its allowed to read the message. After the actor is done, it will delete the file,
 making space for the next one.
