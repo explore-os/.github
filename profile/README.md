@@ -4,8 +4,6 @@ This project is an experimental **actor system built on the Linux filesystem and
 It acts like a **sandbox for exploring system behavior** - you can model services, send messages, and eventually pause,
 inspect, and edit interactions at runtime. Think of it as a **lightweight debugger for distributed systems**.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=1078020597)
-
 - [Work in Progress](#work-in-progress)
 - [Introduction](#introduction)
 - [Why?](#why)
@@ -65,11 +63,7 @@ use all the pre-existing tools to monitor and inspect the system while it's runn
 ---
 
 ## Getting started
-The easiest way to start playing around is by clicking the button below:
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=1078020597)
-
-Or just clone the [playground](https://github.com/explore-os/play)
+The easiest way to start playing is around is to clone the [playground](https://github.com/explore-os/play)
 and opening it in vscode. The playground uses a devcontainer to set everything up properly and put you
 directly into a working environment.
 
